@@ -87,7 +87,7 @@ class YandexSplitPayment extends Payment
                     $this->modx->logEvent(0, 1, 'Request data: <pre>' . print_r($result, true) . '</pre>',
                         'Commerce YandexSplit Payment Debug: payment check');
                 }
-                if (is_array($result) && isset($result['status']) && $result['status'] == 'approved') {
+                if (is_array($result) && isset($result['plan']['status']) && $result['plan']['status'] == 'approved') {
                     try {
                         $order = $processor->loadOrder($payment['order_id']);
                         $processor->processPayment($payment, ci()->currency->convert($order['amount'], 'RUB', $order['currency']));
