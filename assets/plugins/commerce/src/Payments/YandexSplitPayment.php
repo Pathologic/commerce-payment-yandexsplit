@@ -18,7 +18,7 @@ class YandexSplitPayment extends Payment
         $settings = ['client_id', 'secret_key'];
         foreach ($settings as $setting) {
             if (empty($setting)) {
-                return '<span class="error" style="color: red;">' . $this->lang['yandexsplit.error.error_empty_params'] . '</span>';
+                return '<span class="error" style="color: red;">' . $this->lang['yandexsplit.error_empty_params'] . '</span>';
             }
         }
 
@@ -87,7 +87,7 @@ class YandexSplitPayment extends Payment
                     $this->modx->logEvent(0, 1, 'Request data: <pre>' . print_r($result, true) . '</pre>',
                         'Commerce YandexSplit Payment Debug: payment check');
                 }
-				$events = ['approved', 'completed'];
+	        $events = ['approved', 'completed'];
                 if (is_array($result) && isset($result['plan']['status']) && in_array($result['plan']['status'], $events)) {
                     try {
                         $order = $processor->loadOrder($payment['order_id']);
